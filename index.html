@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Hearthstone Deck Value</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-app="app" ng-controller="controller">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Hearthstone Deck Value</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://www.TDDdev.com" target="_blank">Blog</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div ng-class="!heroSelected ? 'container' : 'cardContainer'">
+        <hdv-welcome></hdv-welcome>
+
+        <!-- Class selection Section -->
+        <div class="row class-choices" ng-if="!heroSelected">
+            <ul class="hero-grid">
+                <li ng-repeat="hero in heroes" class="hero-container" ng-click="selectHero(hero)">
+                    <div class="hero hero-{{hero.Style}}">
+                        {{hero.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <hdv-view ng-if="heroSelected">
+            <div id="cardContainer" class="card-collection">
+                <div class="row">
+                    <h2 class="col-lg-2">Cards ({{cards.length}})</h2>
+                    <div class="col-lg-10">
+                        <hdv-filter></hdv-filter>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" ng-repeat="card in cards | filter:filterCards | orderBy : ['Mana', 'Name'] ">
+                        <hdv-card add="true" card="card"></hdv-card>
+                    </div>
+                </div>
+            </div>
+            
+            <hdv-my-deck></hdv-my-deck>            
+        </hdv-view>
+
+        <hr />
+        <br />
+        <br />
+    </div>
+    <!-- /.container -->
+    
+    <footer class="footer hero-{{selectedHero.Style}}" ng-if="heroSelected">
+        <div class="container">
+            <div class="row" style="padding-top:5px;">
+                <div class="col-lg-3 col-md-6">
+                    Attack: {{deck.Attack}}
+                </div>                
+                <div class="col-lg-3 col-md-6">
+                    Health: {{deck.Health}}
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    Cost: {{deck.Mana}}
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    Curve: {{deck.Curve | number:4}}
+                </div>
+            </div>
+        </div>
+    </footer>    
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+    <script src="controllers.js"></script>
+    <script src="directives.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+.page-header{
+	margin-top:60px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  color:#fff;
+}
+
+.deck{
+  position:fixed;
+  top:40px;
+  right:0;
+  overflow: auto;
+  min-width:300px;
+  color:#fff;
+}
+
+.push-down-20{
+  padding-top:20px;
+}
+
+.card-collection{
+  background:#E1CAA0;
+  padding:0 10px;
+}
+
+.class-choices{
+  background:#E1CAA0;  
+}
+
+.hero-grid{
+  list-style: none;
+  margin:10px;
+  padding:0;  
+}
+
+.hero-container{
+  width:33.33%;
+  height:33.33%;
+  float:left;
+}
+
+.hero{
+  cursor: pointer;
+  color:#fff;
+  text-align: center;
+  margin:10px;
+  height:50px;
+  font-weight: bold;
+}
+
+.hero-warrior{
+  background: #8B0000;
+}
+
+.hero-shaman{
+  background:#0000CD;
+}
+
+.hero-rogue{
+  background:#000;
+}
+
+.hero-paladin{
+  background:#B8860B;
+}
+
+.hero-hunter{
+  background:#006400;
+}
+
+.hero-druid{
+  background:#8B4513;
+}
+
+.hero-warlock{
+  background:#3c003c;
+}
+
+.hero-mage{
+  background:#4169E1;
+}
+
+.hero-priest{
+  background:#fff;
+  color: #000;
+}
+
+.card{
+  background: #444;
+  color:#fff;
+  margin-bottom: 5px;
+}
+
+.card-health, .card-health:hover{
+  margin-right:10px;
+  background: #b00;
+  color:#fff;
+  border-radius: 50%;
+  font-weight:bold;
+}
+
+.card-attack, .card-attack:hover{
+  margin-right:10px;
+  background: #c9b70a;
+  color:#000;
+  border-radius: 50%;
+  font-weight:bold;
+}
+
+.mana-cost, .mana-cost:hover{
+  background: #0f0cc4;
+  color: #fff;
+  text-align: center;
+  margin-right:10px;
+  font-weight:bold;
+}
+
+.btn.nohover:hover, .btn.nohover:active {
+    cursor:default;
+    outline: none;
+    box-shadow: none;
+}
+
+.noradius{
+  border-radius: 0;
+}
+
+.cardContainer{
+  padding:10px;  
+}
+
+/* Medium Devices, Desktops */
+	@media only screen and (max-width : 1350px){
+    .col-lg-4{
+       width: 50%;
+    }
+	}
+  
+	@media only screen and (max-width : 1200px){
+    .footer{
+       height: 60px;
+    }
+	}
+ 
+	/* Small Devices, Tablets */
+	@media only screen and (max-width : 1050px){
+    .footer{
+       height: 80px;
+       font-size: 12px;
+    }
+    
+    .col-md-6{
+      width:100%;
+    }
+	}
+ 
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width : 480px){
+ 
+	}
+ 
+	/* Custom, iPhone Retina */
+	@media only screen and (max-width : 320px){
+ 
+	}
