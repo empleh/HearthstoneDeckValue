@@ -21,7 +21,7 @@
 	"showOutput": "silent",
 	
 	// args is the HelloWorld program to compile.
-	"args": ["app.ts", "services.ts", "controllers.ts", "directives.ts", "tsUnit.ts", "unitTests.ts"],
+	"args": ["app.ts", "filters.ts", "services.ts", "controllers.ts", "directives.ts", "tsUnit.ts", "unitTests.ts"],
 	
 	// use the standard tsc problem matcher to find compile problems
 	// in the output.

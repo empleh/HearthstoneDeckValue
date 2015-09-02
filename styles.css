@@ -97,7 +97,7 @@
 }
 
 .card-health, .card-health:hover{
-  margin-right:10px;
+  margin-right:5px;
   background: #b00;
   color:#fff;
   border-radius: 50%;
@@ -105,10 +105,17 @@
 }
 
 .card-attack, .card-attack:hover{
-  margin-right:10px;
+  margin-right:5px;
   background: #c9b70a;
   color:#000;
   border-radius: 50%;
+  font-weight:bold;
+}
+
+.card-count, .card-count:hover{
+  margin-left:5px;
+  background: #000;
+  color:#c9b70a;
   font-weight:bold;
 }
 
@@ -116,7 +123,7 @@
   background: #0f0cc4;
   color: #fff;
   text-align: center;
-  margin-right:10px;
+  margin-right:5px;
   font-weight:bold;
 }
 

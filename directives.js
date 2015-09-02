@@ -35,7 +35,7 @@ var DeckValue;
             function MyDeckDirectiveTemplate() {
             }
             MyDeckDirectiveTemplate.Get = function () {
-                return "\n\t\t\t<div id=\"myDeck\" class=\"col-lg-2 deck hero-{{selectedHero.Style}}\">\n            \t<h2>My {{selectedHero.Name}} Deck ({{deck.Cards.length}}/30)</h2>\n            \t<p ng-repeat=\"card in deck.Cards\">\n\t\t\t\t\t<hdv-card add=\"false\" card=\"card\"></hdv-card>\n\t            </p>\n\t        </div>\t\n\t\t\t";
+                return "\n\t\t\t<div id=\"myDeck\" class=\"col-lg-2 deck hero-{{selectedHero.Style}}\">\n            \t<h2>My {{selectedHero.Name}} Deck ({{deck.Cards.length}}/30)</h2>\n            \t<p ng-repeat=\"card in deck.DisplayCards | orderBy:['Mana', 'Name']\">\n\t\t\t\t\t<hdv-card add=\"false\" card=\"card\"></hdv-card>\n\t            </p>\n\t        </div>\t\n\t\t\t";
             };
             return MyDeckDirectiveTemplate;
         })();
@@ -81,7 +81,7 @@ var DeckValue;
             function CardDirectiveTemplate() {
             }
             CardDirectiveTemplate.Get = function () {
-                return "\n\t\t\t<div class=\"card\" ng-class=\"{ 'card-sm': !add }\">\n\t\t\t\t<span class=\"mana-cost btn nohover noradius\" title=\"Mana Cost\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Mana}}</span>\n            \t{{card.Name}} \n                <span class=\"btn btn-success btn-sm pull-right noradius\" ng-click=\"addToDeck();\" ng-if=\"add\">+</span>\n\t\t\t\t<span class=\"btn btn-danger btn-xs pull-right\" ng-click=\"removeFromDeck();\" ng-if=\"!add\">-</span>\n\t\t\t\t\n\t\t\t\t<span class=\"card-health pull-right btn nohover\" title=\"Health\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Health}}</span>\n\t\t\t\t<span class=\"card-attack pull-right btn nohover\" title=\"Attack\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Attack}}</span>\n\t        </div>\t\n\t\t\t";
+                return "\n\t\t\t<div class=\"card\" ng-class=\"{ 'card-sm': !add }\">\n\t\t\t\t<span class=\"mana-cost btn nohover noradius\" title=\"Mana Cost\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Mana}}</span>\n            \t{{card.Name}} \n\t\t\t\t<span ng-if=\"!add\" class=\"card-count pull-right btn nohover\" title=\"Count\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">x{{card.Count}}</span>\n                <span class=\"btn btn-success btn-sm pull-right noradius\" ng-click=\"addToDeck();\" ng-if=\"add\">+</span>\n\t\t\t\t<span class=\"btn btn-danger btn-xs pull-right\" ng-click=\"removeFromDeck();\" ng-if=\"!add\">-</span>\n\t\t\t\t\n\t\t\t\t<span class=\"card-health pull-right btn nohover\" title=\"Health\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Health}}</span>\n\t\t\t\t<span class=\"card-attack pull-right btn nohover\" title=\"Attack\" ng-class=\"add ? 'btn-sm' : 'btn-xs'\">{{card.Attack}}</span>\n\t        </div>\t\n\t\t\t";
             };
             return CardDirectiveTemplate;
         })();

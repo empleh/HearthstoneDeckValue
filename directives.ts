@@ -41,7 +41,7 @@ module DeckValue.Directives{
 			return `
 			<div id="myDeck" class="col-lg-2 deck hero-{{selectedHero.Style}}">
             	<h2>My {{selectedHero.Name}} Deck ({{deck.Cards.length}}/30)</h2>
-            	<p ng-repeat="card in deck.Cards">
+            	<p ng-repeat="card in deck.DisplayCards | orderBy:['Mana', 'Name']">
 					<hdv-card add="false" card="card"></hdv-card>
 	            </p>
 	        </div>	
@@ -102,6 +102,7 @@ module DeckValue.Directives{
 			<div class="card" ng-class="{ 'card-sm': !add }">
 				<span class="mana-cost btn nohover noradius" title="Mana Cost" ng-class="add ? 'btn-sm' : 'btn-xs'">{{card.Mana}}</span>
             	{{card.Name}} 
+				<span ng-if="!add" class="card-count pull-right btn nohover" title="Count" ng-class="add ? 'btn-sm' : 'btn-xs'">x{{card.Count}}</span>
                 <span class="btn btn-success btn-sm pull-right noradius" ng-click="addToDeck();" ng-if="add">+</span>
 				<span class="btn btn-danger btn-xs pull-right" ng-click="removeFromDeck();" ng-if="!add">-</span>
 				
