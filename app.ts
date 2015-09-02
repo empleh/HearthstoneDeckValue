@@ -17,6 +17,7 @@ module DeckValue{
 		Mana: number;
 		Name: string;
 		PlayerClass: string;
+		Count: number;
 		
 		constructor(attack: number, health: number, mana: number, name: string, playerClass: string) {
 			this.Attack = attack || 0;
@@ -24,6 +25,7 @@ module DeckValue{
 			this.Mana = mana || 0;
 			this.Name = name;
 			this.PlayerClass = playerClass;
+			this.Count = 1;
 		}
 	}
 	
@@ -35,15 +37,28 @@ module DeckValue{
 		PlayerClass: string;
 		
 		Cards: Array<Card>;
+		DisplayCards: Array<Card>;
 
 		constructor() {
 			this.Cards = new Array<Card>();
+			this.DisplayCards = new Array<Card>();
 		}
 		
 		public addToDeck(card){
 			if(this.Cards.indexOf(card) > -1){
-				card = angular.copy(card);	
+				card = angular.copy(card);
 			}
+			
+			var displayCard = this.DisplayCards.filter((c) => {
+					return c.Name === card.Name;
+				})[0];
+				
+			if(displayCard){
+				displayCard.Count++;
+			}else{
+				this.DisplayCards.push(angular.copy(card));	
+			}
+			
 			this.Cards.push(card);
 			this.calculateStats();
 		}
@@ -51,6 +66,18 @@ module DeckValue{
 		public removeFromDeck(card){
 			var indexToRemove = this.Cards.indexOf(card);
 			this.Cards.splice(indexToRemove, 1);
+			
+			var displayed = this.DisplayCards.filter((c) => {
+				return c.Name === card.Name;
+			})[0];
+			
+			if(displayed.Count > 1){
+				displayed.Count--;
+			}else{
+				var indexDisplayedToRemove = this.DisplayCards.indexOf(displayed);
+				this.DisplayCards.splice(indexDisplayedToRemove, 1);
+			}
+			this.calculateStats();
 		}
 		
 		private calculateStats(){

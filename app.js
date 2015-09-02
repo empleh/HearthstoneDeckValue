@@ -16,6 +16,7 @@ var DeckValue;
             this.Mana = mana || 0;
             this.Name = name;
             this.PlayerClass = playerClass;
+            this.Count = 1;
         }
         return Card;
     })();
@@ -23,10 +24,20 @@ var DeckValue;
     var Deck = (function () {
         function Deck() {
             this.Cards = new Array();
+            this.DisplayCards = new Array();
         }
         Deck.prototype.addToDeck = function (card) {
             if (this.Cards.indexOf(card) > -1) {
                 card = angular.copy(card);
+            }
+            var displayCard = this.DisplayCards.filter(function (c) {
+                return c.Name === card.Name;
+            })[0];
+            if (displayCard) {
+                displayCard.Count++;
+            }
+            else {
+                this.DisplayCards.push(angular.copy(card));
             }
             this.Cards.push(card);
             this.calculateStats();
@@ -34,6 +45,17 @@ var DeckValue;
         Deck.prototype.removeFromDeck = function (card) {
             var indexToRemove = this.Cards.indexOf(card);
             this.Cards.splice(indexToRemove, 1);
+            var displayed = this.DisplayCards.filter(function (c) {
+                return c.Name === card.Name;
+            })[0];
+            if (displayed.Count > 1) {
+                displayed.Count--;
+            }
+            else {
+                var indexDisplayedToRemove = this.DisplayCards.indexOf(displayed);
+                this.DisplayCards.splice(indexDisplayedToRemove, 1);
+            }
+            this.calculateStats();
         };
         Deck.prototype.calculateStats = function () {
             var _this = this;
